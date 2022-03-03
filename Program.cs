@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Heist
 {
@@ -6,18 +7,35 @@ namespace Heist
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Plan your Heist!");
+            bool run = true;
+            {
 
-            Console.Write("What is your team member's name? ");
-            string TeamMemberName = Console.ReadLine();
+                HeistCrew heistCrew1 = new HeistCrew("Potatoe lovers");
 
-            Console.Write("What is your team member's skill? 1-50 ");
-            var TeamMemberSkill = int.Parse(Console.ReadLine());
+                Console.WriteLine("Plan your Heist!");
 
-            Console.Write("What is your team member's courage? 0.0- 2.0");
-            var TeamMemberCourage = decimal.Parse(Console.ReadLine());
+                while (run)
+                    Console.Write("What is your team member's name? ");
+                string teamMemberName = Console.ReadLine();
+                if (teamMemberName == "")
+                {
+                    run = false;
+                }
+                else
+                {
 
-            Console.Write($"Team member's information: \n Team member name: {TeamMemberName}, \n Team member skill: {TeamMemberSkill}, \n Team member courage: {TeamMemberCourage}");
+                    Console.Write("What is your team member's skill? 1-50 ");
+                    var teamMemberSkill = int.Parse(Console.ReadLine());
+
+                    Console.Write("What is your team member's courage? 0.0- 2.0");
+                    var teamMemberCourage = double.Parse(Console.ReadLine());
+
+                    TeamMember teamMember = new TeamMember(teamMemberName, teamMemberSkill, teamMemberCourage);
+                    heistCrew1.addTeamMember(teamMember);
+
+                    heistCrew1.displayHeistCrew();
+                }
+            }
         }
     }
 }
